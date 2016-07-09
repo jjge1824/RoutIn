@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LayoutTheme"
+    tools:context=".ClasesViews.RutaActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            style="@style/ChildLayputScroll">
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

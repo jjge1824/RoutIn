@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LayoutTheme"
+    android:background="@drawable/fondo_inicial"
+    tools:context=".ClasesViews.PantallaInicialActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/inicial_btn_crear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crear_cuenta"
+            android:textColor="@color/colorPrincipalTextWhite"
+            android:textSize="@dimen/small_text"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logoPrincipal"
+            android:src="@drawable/logo_avanti" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            style="@style/EditTextWhite"
+            android:hint="@string/hint_correo_principal"
+            android:inputType="textEmailAddress"
+            android:id="@+id/inicial_et_email" />
+
+        <EditText
+            style="@style/EditTextWhite"
+            android:hint="@string/hint_password_principal"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:id="@+id/inicial_et_password" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_elements_big">
+
+        <Button
+            android:id="@+id/inicial_btn_entrar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padding_elements_big"
+            android:layout_marginRight="@dimen/padding_elements_big"
+            android:textSize="@dimen/small_text"
+            android:textColor="@color/colorPrincipalTextBlack"
+            android:background="@color/colorPrimary"
+            android:text="@string/text_button_principal"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_elements"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/inicial_btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_reset_password"
+            android:textColor="@color/colorPrincipalTextWhite"
+            android:textSize="@dimen/small_text"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

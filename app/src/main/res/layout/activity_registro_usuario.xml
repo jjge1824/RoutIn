@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LayoutTheme"
+    tools:context=".ClasesViews.RegistroUsuarioActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            style="@style/ChildLayputScroll">
+
+            <EditText
+                style="@style/EditTextBlack"
+                android:hint="@string/hint_nombre"
+                android:id="@+id/crear_et_nombre"
+                android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
+                android:inputType="textPersonName" />
+
+            <EditText
+                style="@style/EditTextBlack"
+                android:hint="@string/hint_appelido"
+                android:id="@+id/crear_et_apellido"
+                android:drawableLeft="@mipmap/ic_people_black_24dp"
+                android:inputType="textPersonName" />
+
+            <EditText
+                style="@style/EditTextBlack"
+                android:hint="@string/hint_correo_principal"
+                android:id="@+id/crear_et_email"
+                android:drawableLeft="@mipmap/ic_email_black_24dp"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                style="@style/EditTextBlack"
+                android:hint="@string/hint_telefono"
+                android:id="@+id/crear_et_telefono"
+                android:drawableLeft="@mipmap/ic_phone_black_24dp"
+                android:inputType="phone"
+                android:maxLength="10" />
+
+            <EditText
+                style="@style/EditTextBlack"
+                android:hint="@string/hint_password_principal"
+                android:id="@+id/crear_et_password"
+                android:drawableLeft="@mipmap/ic_https_black_24dp"
+                android:inputType="textPassword" />
+
+            <EditText
+                style="@style/EditTextBlack"
+                android:hint="@string/hint_password_conf"
+                android:id="@+id/crear_et_password_conf"
+                android:drawableLeft="@mipmap/ic_done_all_black_24dp"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:paddingTop="@dimen/padding_elements_big"
+                android:text="@string/crear_terminos"
+                android:id="@+id/crear_tv_terminos"
+                android:drawableLeft="@mipmap/ic_library_books_black_24dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorPrimary" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_elements"
+                android:text="@string/crear_terminos_aceptar"
+                android:id="@+id/crear_chb_terminos"
+                android:checked="false" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

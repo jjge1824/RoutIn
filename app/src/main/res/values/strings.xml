@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Avanti</string>
+    <string name="action_aceptar">Aceptar</string>
+    <string name="google_maps_key">AIzaSyDMGTqkxdnUXOVv30FCAnqSkPhqQKK3wec</string>
+
+    <!--Errores globales-->
+    <string name="java_error_unknown">Ha ocurrido un error desconocido.</string>
+    <string name="java_error_network">No se encuentra conectado a internet.</string>
+    <string name="java_error_disconnected">Se ha perdido la conexión con el servidor.</string>
+
+    <!--Pantalla inicial-->
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="text_button_principal">Entrar</string>
+    <string name="text_reset_password">¿Olvidaste tu contraseña?</string>
+    <string name="java_alert_mensaje">Se envió la contraseña al email</string>
+    <string name="java_alert_positivebutton">Confirmar</string>
+    <!--Alerts-->
+    <string name="java_alert_title_reset">Restablecer Password</string>
+    <string name="java_alert_title_bienvenido">Bienvenido</string>
+    <string name="java_alert_title_error">Se ha producido un error</string>
+    <string name="java_alert_inexistente">El usuario no existe.</string>
+    <string name="java_alert_password_incorrecta">La contraeña es incorrecta.</string>
+    <string name="java_alert_no_correo">Por favor ingrese su correo electronico para\n
+        reestablecer su contraseña.</string>
+    <string name="java_alert_password_novalido">La contraseña debe de tener una longitud
+        de entre 4 y 16 caracteres\ny solo acepta letras y numeros.</string>
+    <string name="java_alert_email_novalido">El correo debe tener el formato correcto.</string>
+    <string name="java_alert_no_email">Por favor ingrese su correo electronico.</string>
+    <string name="java_alert_no_password">Por favor ingrese su contraseña.</string>
+    <string name="java_progress_title">Iniciando sesion</string>
+    <string name="java_progress_message">Por favor espere...</string>
+
+    <!--Pantalla Crear cuenta usuario -->
+    <string name="crear">Crear una cuenta.</string>
+    <string name="crear_terminos">Terminos y condiciones de uso.</string>
+    <string name="crear_terminos_aceptar">He leido y acepto los terminos y condiciones de uso</string>
+    <!--Alerts-->
+    <string name="java_alert_tile_crear">Usuario registrado con exito.</string>
+    <string name="java_alert_message_crear">El usuario ha sido creado satisfactoriamente.\n
+        Ahora puede gozar de los beneficios que Avanti le ofrece\n
+        mientras que cuida nuestro planeta.</string>
+    <string name="java_alert_no_nombre">Por favor introduza su(s) nombre(s).</string>
+    <string name="java_alert_no_apellido">Por favor introduza sus apellidos</string>
+    <string name="java_alert_no_telefono">Por favor introduza su numero de telefono móvil.</string>
+    <string name="java_alert_no_comfirmacion">Por favor introduza la confirmación de contraseña.</string>
+    <string name="java_alert_nombre_novalido">El nombre solo acepta letras mayusculas y minusculas
+            \ncon acentos, y espacios.</string>
+    <string name="java_alert_apellido_novalido">Los apellidos solo aceptan letras mayusculas y minusculas
+            \ncon acentos, y espacios.</string>
+    <string name="java_alert_telefono_novalido">El telofono solo puede estar compuesto por números.</string>
+    <string name="java_alert_password_nocoincide">La contraseña y su confirmación no son iguales.</string>
+    <string name="java_alert_no_aceptar">Necesita aceptar los terminos y condiciones de uso.</string>
+    <string name="java_alert_message_usuarioExiste">El usuario ya existe.\nIntente con otro.</string>
+
+    <!--Maps Activity-->
+    <string name="map_localizacion_actual">Localización actual.</string>
+
+
+    <!--Pantalla Ruta-->
+    <string name="crear_ruta">Crear ruta</string>
+
+    <!-- Hints-->
+    <string name="hint_correo_principal">ejemplo@hotmail.com</string>
+    <string name="hint_password_principal">Contraseña</string>
+    <string name="hint_nombre">Nombre(s)</string>
+    <string name="hint_appelido">Apellidos</string>
+    <string name="hint_telefono">Número de telefono móvil</string>
+    <string name="hint_password_conf">Confirma contraseña</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
+
