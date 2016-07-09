@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.jose_jesus_guzman.avanti.ClasesFirebase.FirebaseControl;
 import com.example.jose_jesus_guzman.avanti.ClasesValidaciones.ValidacionesLogin;
@@ -294,6 +295,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
                 @Override
                 public void onAuthenticated(AuthData authData) {
                     startActivity (new Intent(getApplicationContext(), MapsActivity.class));
+                    finish();
                 }
 
                 @Override
@@ -316,11 +318,18 @@ public class PantallaInicialActivity extends AppCompatActivity {
                             limpiaCampos();
                             break;
                     }
-
+                    return;
                 }
             });
 
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            pDialog.dismiss();
+            Toast.makeText(PantallaInicialActivity.this, "Bienvenido a avanti", Toast.LENGTH_LONG).show();
         }
 
         @Override
