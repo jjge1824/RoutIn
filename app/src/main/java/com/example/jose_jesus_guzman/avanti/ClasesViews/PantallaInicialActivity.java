@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -24,8 +26,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 public class PantallaInicialActivity extends AppCompatActivity {
-    private EditText txtEmail;
-    private EditText txtPassword;
+    private TextInputLayout txtEmail;
+    private TextInputLayout txtPassword;
     private Button btnCrear;
     private Button btnEntrar;
     private Button btnReset;
@@ -41,17 +43,16 @@ public class PantallaInicialActivity extends AppCompatActivity {
 
         mostartInternetDialog = false;
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
-        }
-        else{
-            mostartInternetDialog= true;
+        } else {
+            mostartInternetDialog = true;
         }
 
 
         //Ocultar status bar y action bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         incializaComponentes();
         validarInternet();
@@ -67,11 +68,10 @@ public class PantallaInicialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Firebase ref = new Firebase(firebaseControl.obtieneUrlFirebase());
-                final String correoElectronico = txtEmail.getText().toString().trim();
-                if (correoElectronico.equals(null) || correoElectronico.equals("")){
+                final String correoElectronico = txtEmail.getEditText().getText().toString().trim();
+                if (correoElectronico.equals(null) || correoElectronico.equals("")) {
                     dialog(getResources().getString(R.string.java_alert_no_correo));
-                }
-                else{
+                } else {
                     ref.resetPassword(correoElectronico, new Firebase.ResultHandler() {
                         @Override
                         public void onSuccess() {
@@ -80,7 +80,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
 
                         @Override
                         public void onError(FirebaseError firebaseError) {
-                            switch (firebaseError.getCode()){
+                            switch (firebaseError.getCode()) {
                                 case FirebaseError.USER_DOES_NOT_EXIST:
                                     dialog(getResources().getString(R.string.java_alert_inexistente));
                                     break;
@@ -100,18 +100,24 @@ public class PantallaInicialActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String correo_electronico = txtEmail.getText().toString().trim();
-                final String password = txtPassword.getText().toString();
-                final Firebase ref = new Firebase(firebaseControl.obtieneUrlFirebase());
+
+                startActivity(new Intent(PantallaInicialActivity.this, PrincipaActivity.class));
+                finish();
+
+                final String correo_electronico = txtEmail.getEditText().getText().toString().trim();
+                final String password = txtPassword.getEditText().getText().toString();
 
                 //Instancia para acceder a las validaciones propias de los campos
                 ValidacionesLogin validacionesLogin = new ValidacionesLogin();
 
                 if (validacionesLogin.validacionEmail(correo_electronico) &&
-                        validacionesLogin.validacionContrasena(password)){
+                        validacionesLogin.validacionContrasena(password)) {
 
-                    ClaseAsyncTask asyncTask = new ClaseAsyncTask("Iniciando sesión",
-                            "Por favor espere...",
+
+                    final Firebase ref = new Firebase(firebaseControl.obtieneUrlFirebase());
+
+                    ClaseAsyncTask asyncTask = new ClaseAsyncTask(getString(R.string.java_progress_title),
+                            getString(R.string.java_progress_message),
                             correo_electronico,
                             password,
                             ref);
@@ -146,21 +152,20 @@ public class PantallaInicialActivity extends AppCompatActivity {
                         }
                     });*/
 
-                }
-                else{
-                    if (correo_electronico.equals("")){
+                } else {
+                    if (correo_electronico.equals("")) {
                         dialog(getResources().getString(R.string.java_alert_no_correo));
                         limpiaCampos();
                     }//End if no correo
-                    else if (password.equals("")){
+                    else if (password.equals("")) {
                         dialog(getResources().getString(R.string.java_alert_no_password));
                         limpiaPassword();
                     }//End if no contraseña
-                    if (validacionesLogin.validacionEmail(correo_electronico) == false){
+                    if (validacionesLogin.validacionEmail(correo_electronico) == false) {
                         dialog(getResources().getString(R.string.java_alert_email_novalido));
                         limpiaCampos();
                     }//end ifCorreo mal
-                    if (validacionesLogin.validacionContrasena(password) == false){
+                    if (validacionesLogin.validacionContrasena(password) == false) {
                         dialog(getResources().getString(R.string.java_alert_password_novalido));
                         limpiaPassword();
                     }//end if Contraseña mal
@@ -171,20 +176,20 @@ public class PantallaInicialActivity extends AppCompatActivity {
 
     }//End on create
 
-    private void incializaComponentes(){
-        txtEmail = (EditText) findViewById(R.id.inicial_et_email);
-        txtPassword = (EditText) findViewById(R.id.inicial_et_password);
+    private void incializaComponentes() {
+        txtEmail = (TextInputLayout) findViewById(R.id.inicial_textLayout_correo);
+        txtPassword = (TextInputLayout) findViewById(R.id.inicial_textLayout_pass);
         btnCrear = (Button) findViewById(R.id.inicial_btn_crear);
         btnEntrar = (Button) findViewById(R.id.inicial_btn_entrar);
         btnReset = (Button) findViewById(R.id.inicial_btn_reset);
         firebaseControl = new FirebaseControl();
     }//End inicializa
 
-    public void validarInternet(){
+    public void validarInternet() {
 
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
 
             btnCrear.setEnabled(true);
@@ -195,7 +200,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
             btnReset.setClickable(true);
 
         }//End if esta conectado
-        else{
+        else {
 
             btnCrear.setEnabled(false);
             btnCrear.setClickable(false);
@@ -208,7 +213,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
             btnReset.setClickable(false);
             btnReset.setTextColor(getResources().getColor(R.color.colorDisabled));
 
-            if (mostartInternetDialog){
+            if (mostartInternetDialog) {
                 dialog(getResources().getString(R.string.java_error_network));
             }
 
@@ -216,7 +221,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
         }//End else no esta conectado
     }//end validar internet
 
-    private void dialog(String mensaje){
+    private void dialog(String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.java_alert_title_error);
         builder.setMessage(mensaje);
@@ -230,7 +235,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void dialogBienvenido(){
+    private void dialogBienvenido() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.java_alert_title_bienvenido);
         builder.setPositiveButton(R.string.java_alert_positivebutton, new DialogInterface.OnClickListener() {
@@ -243,10 +248,10 @@ public class PantallaInicialActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void dialogReset(String email){
+    private void dialogReset(String email) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.java_alert_title_reset);
-        builder.setMessage(R.string.java_alert_mensaje + ": "+ email+"");
+        builder.setMessage(R.string.java_alert_mensaje + ": " + email + "");
         builder.setPositiveButton(R.string.java_alert_positivebutton, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -258,15 +263,14 @@ public class PantallaInicialActivity extends AppCompatActivity {
     }
 
 
-    private void limpiaCampos(){
-        txtEmail.setText("");
-        txtPassword.setText("");
+    private void limpiaCampos() {
+        txtEmail.getEditText().setText("");
+        txtPassword.getEditText().setText("");
     }
 
-    private void limpiaPassword(){
-        txtPassword.setText("");
+    private void limpiaPassword() {
+        txtPassword.getEditText().setText("");
     }
-
 
 
     class ClaseAsyncTask extends AsyncTask {
@@ -278,8 +282,8 @@ public class PantallaInicialActivity extends AppCompatActivity {
         private String correo_electronico;
         private String password;
 
-        public ClaseAsyncTask( String progressTitle, String progressMessage,
-                               String correo_electronico, String password, Firebase ref) {
+        public ClaseAsyncTask(String progressTitle, String progressMessage,
+                              String correo_electronico, String password, Firebase ref) {
             //this.activity = activity;
             this.progressTitle = progressTitle;
             this.progressMessage = progressMessage;
@@ -294,7 +298,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
             ref.authWithPassword(correo_electronico, password, new Firebase.AuthResultHandler() {
                 @Override
                 public void onAuthenticated(AuthData authData) {
-                    startActivity (new Intent(getApplicationContext(), MapsActivity.class));
+                    startActivity(new Intent(getApplicationContext(), MapsActivity.class));
                     finish();
                 }
 
@@ -329,12 +333,10 @@ public class PantallaInicialActivity extends AppCompatActivity {
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             pDialog.dismiss();
-            Toast.makeText(PantallaInicialActivity.this, "Bienvenido a avanti", Toast.LENGTH_LONG).show();
         }
 
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(PantallaInicialActivity.this);
             pDialog.setTitle(progressTitle);

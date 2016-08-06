@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -17,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jose_jesus_guzman.avanti.Clases.Usuario;
@@ -31,14 +32,16 @@ import com.firebase.client.FirebaseError;
 import java.util.Map;
 
 public class RegistroUsuarioActivity extends AppCompatActivity {
-    private EditText txtNombre;
-    private EditText txtApellido;
-    private EditText txtEmail;
-    private EditText txtTelefono;
-    private EditText txtPassword;
-    private EditText txtPaswordConf;
+    private TextInputLayout txtNombre;
+    private TextInputLayout txtApellido;
+    private TextInputLayout txtEmail;
+    private TextInputLayout txtTelefono;
+    private TextInputLayout txtPassword;
+    private TextInputLayout txtPaswordConf;
     private TextView tvTerminos;
     private CheckBox chbTerminos;
+    private Toolbar toolbar;
+
     FirebaseControl firebaseControl;
 
     @Override
@@ -49,11 +52,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         incializaComponentes();
 
         //Cambiar color de title en action bar
-        SpannableString spannableString = new SpannableString(getString(R.string.crear));
-        spannableString.setSpan(new ForegroundColorSpan(Color.BLACK), 0, spannableString.toString()
-                .length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(spannableString);
+        setSupportActionBar(toolbar);
 
         tvTerminos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,31 +92,29 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     }//End on options
 
     private void incializaComponentes(){
-        txtNombre = (EditText) findViewById(R.id.crear_et_nombre);
-        txtApellido = (EditText) findViewById(R.id.crear_et_apellido);
-        txtEmail = (EditText) findViewById(R.id.crear_et_email);
-        txtTelefono = (EditText) findViewById(R.id.crear_et_telefono);
-        txtPassword = (EditText) findViewById(R.id.crear_et_password);
-        txtPaswordConf = (EditText) findViewById(R.id.crear_et_password_conf);
+        txtNombre = (TextInputLayout) findViewById(R.id.registro_textLayout_nombre);
+        txtApellido = (TextInputLayout) findViewById(R.id.registro_textLayout_apellidos);
+        txtEmail = (TextInputLayout) findViewById(R.id.registro_textLayout_correo);
+        txtTelefono = (TextInputLayout) findViewById(R.id.registro_textLayout_telefono);
+        txtPassword = (TextInputLayout) findViewById(R.id.iregistro_textLayout_pass);
+        txtPaswordConf = (TextInputLayout) findViewById(R.id.registro_textLayout_confPAss);
         tvTerminos = (TextView) findViewById(R.id.crear_tv_terminos);
         chbTerminos = (CheckBox) findViewById(R.id.crear_chb_terminos);
+        toolbar = (Toolbar) findViewById(R.id.registro_toolbar);
         firebaseControl = new FirebaseControl();
     }
 
     private void mandarUsuario(){
-        final Firebase ref = new Firebase(firebaseControl.obtieneUrlFirebase());
-
         //Instancias para acceder a las validaciones propias de los campos
         ValidacionesLogin validacionesLogin = new ValidacionesLogin();
         ValidacionesUsuario validacionesUsuario = new ValidacionesUsuario();
-
         //Mandar todos los datos del formulario a la clase Usuario
         //Esto es porque se recuperaran de ahi y se mandará la clase completa a FireBase
-        final Usuario user = new Usuario(txtNombre.getText().toString().trim(),
-                txtApellido.getText().toString().trim(),
-                txtEmail.getText().toString().trim(),
-                txtTelefono.getText().toString().trim(),
-                txtPassword.getText().toString());
+        final Usuario user = new Usuario(txtNombre.getEditText().getText().toString().trim(),
+                txtApellido.getEditText().getText().toString().trim(),
+                txtEmail.getEditText().getText().toString().trim(),
+                txtTelefono.getEditText().getText().toString().trim(),
+                txtPassword.getEditText().getText().toString());
 
         //Se usa la misma expresion para apellido y nombre.
         if (validacionesUsuario.validacionNombreCompleto(user.getNombre()) &&
@@ -125,8 +122,10 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                 validacionesLogin.validacionEmail(user.getEmail()) &&
                 validacionesUsuario.validacionTelefono(user.getTelefono()) &&
                 validacionesLogin.validacionContrasena(user.getPassword()) &&
-                user.getPassword().equals(txtPaswordConf.getText().toString()) &&
+                user.getPassword().equals(txtPaswordConf.getEditText().getText().toString()) &&
                 chbTerminos.isChecked()){
+
+            final Firebase ref = new Firebase(firebaseControl.obtieneUrlFirebase());
 
             ref.createUser(user.getEmail(), user.getPassword(),
                     new Firebase.ValueResultHandler<Map<String, Object>>() {
@@ -135,7 +134,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                             //Pone los datos en el child de usuarios con el uid del usuario como nombre de branch
                             Firebase usuario = ref.child("usuarios").child(stringObjectMap.get("uid") + "");
 
-                            usuario.setValue(user);//Pasas toda la clase para ponerla en firebase con todo lo que incluya
+                            usuario.setValue(user);//Pasas toda la clase para ponerla en firebase con cualquiera que incluya
 
                             dialog(getResources().getString(R.string.java_alert_tile_crear),
                                     getResources().getString(R.string.java_alert_message_crear));
@@ -215,7 +214,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             else{
                 txtPassword.setError(null);
             }//end  else
-            if (txtPaswordConf.getText().toString().equals("")){
+            if (txtPaswordConf.getEditText().getText().toString().equals("")){
                 txtPassword.setError(getResources().getString(R.string.java_alert_no_comfirmacion));
                 limpiarContraseña();
                 return;
@@ -233,7 +232,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             }
 
             //SI LAS CONTRASEÑAS NO COINCIDEN
-            if (user.getPassword().equals(txtPaswordConf.getText().toString()) == false){
+            if (user.getPassword().equals(txtPaswordConf.getEditText().getText().toString()) == false){
                 txtPassword.setError(getResources().getString(R.string.java_alert_password_nocoincide));
                 txtPaswordConf.setError(getResources().getString(R.string.java_alert_password_nocoincide));
                 limpiarContraseña();
@@ -305,24 +304,24 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     }
 
     private void limpiarNombre(){
-        txtNombre.setText("");
+        txtNombre.getEditText().setText("");
     }//end limpiar nombre
 
     private void limpiarApellidos(){
-        txtApellido.setText("");
+        txtApellido.getEditText().setText("");
     } //end limpiar apelldos
 
     private void limpiarEmail(){
-        txtEmail.setText("");
+        txtEmail.getEditText().setText("");
     }//end limpiar email
 
     private void limpiarTelefono(){
-        txtTelefono.setText("");
+        txtTelefono.getEditText().setText("");
     }//emd limpiar telefono
 
     private void limpiarContraseña(){
-        txtPassword.setText("");
-        txtPaswordConf.setText("");
+        txtPassword.getEditText().setText("");
+        txtPaswordConf.getEditText().setText("");
     }//end limpiar contraseña
 
 }//end class

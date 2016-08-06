@@ -1,82 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/LayoutTheme"
+    style="@style/LayoutThemeCoordinator"
     tools:context=".ClasesViews.RegistroUsuarioActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/ChildLayputScroll">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/registro_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="@dimen/elevation_toolbar"
+            android:title="@string/crear"
+            android:background="?attr/colorPrimary"
+            app:layout_collapseMode="pin" />
 
-            <EditText
-                style="@style/EditTextBlack"
-                android:hint="@string/hint_nombre"
-                android:id="@+id/crear_et_nombre"
-                android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
-                android:inputType="textPersonName" />
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/registro_nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <EditText
-                style="@style/EditTextBlack"
-                android:hint="@string/hint_appelido"
-                android:id="@+id/crear_et_apellido"
-                android:drawableLeft="@mipmap/ic_people_black_24dp"
-                android:inputType="textPersonName" />
+            <LinearLayout style="@style/ChildLayputScroll">
 
-            <EditText
-                style="@style/EditTextBlack"
-                android:hint="@string/hint_correo_principal"
-                android:id="@+id/crear_et_email"
-                android:drawableLeft="@mipmap/ic_email_black_24dp"
-                android:inputType="textEmailAddress" />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/registro_textLayout_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <EditText
-                style="@style/EditTextBlack"
-                android:hint="@string/hint_telefono"
-                android:id="@+id/crear_et_telefono"
-                android:drawableLeft="@mipmap/ic_phone_black_24dp"
-                android:inputType="phone"
-                android:maxLength="10" />
+                    <EditText
+                        style="@style/EditTextBlack"
+                        android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
+                        android:hint="@string/hint_nombre"
+                        android:inputType="textPersonName" />
 
-            <EditText
-                style="@style/EditTextBlack"
-                android:hint="@string/hint_password_principal"
-                android:id="@+id/crear_et_password"
-                android:drawableLeft="@mipmap/ic_https_black_24dp"
-                android:inputType="textPassword" />
+                </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                style="@style/EditTextBlack"
-                android:hint="@string/hint_password_conf"
-                android:id="@+id/crear_et_password_conf"
-                android:drawableLeft="@mipmap/ic_done_all_black_24dp"
-                android:inputType="textPassword" />
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/registro_textLayout_apellidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:paddingTop="@dimen/padding_elements_big"
-                android:text="@string/crear_terminos"
-                android:id="@+id/crear_tv_terminos"
-                android:drawableLeft="@mipmap/ic_library_books_black_24dp"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorPrimary" />
+                    <EditText
+                        style="@style/EditTextBlack"
+                        android:drawableLeft="@mipmap/ic_people_black_24dp"
+                        android:hint="@string/hint_appelido"
+                        android:inputType="textPersonName" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/padding_elements"
-                android:text="@string/crear_terminos_aceptar"
-                android:id="@+id/crear_chb_terminos"
-                android:checked="false" />
+                </android.support.design.widget.TextInputLayout>
 
-        </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/registro_textLayout_correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </ScrollView>
+                    <EditText
+                        style="@style/EditTextBlack"
+                        android:drawableLeft="@mipmap/ic_email_black_24dp"
+                        android:hint="@string/hint_correo_principal"
+                        android:inputType="textEmailAddress" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/registro_textLayout_telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        style="@style/EditTextBlack"
+                        android:drawableLeft="@mipmap/ic_phone_black_24dp"
+                        android:hint="@string/hint_telefono"
+                        android:inputType="phone"
+                        android:maxLength="10" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/iregistro_textLayout_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        style="@style/EditTextBlack"
+                        android:drawableLeft="@mipmap/ic_https_black_24dp"
+                        android:hint="@string/hint_appelido"
+                        android:inputType="textPassword" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/registro_textLayout_confPAss"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        style="@style/EditTextBlack"
+                        android:drawableLeft="@mipmap/ic_done_all_black_24dp"
+                        android:hint="@string/hint_password_conf"
+                        android:inputType="textPassword" />
+
+                </android.support.design.widget.TextInputLayout>
 
 
+                <TextView
+                    android:id="@+id/crear_tv_terminos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:drawableLeft="@mipmap/ic_library_books_black_24dp"
+                    android:paddingTop="@dimen/padding_elements_big"
+                    android:text="@string/crear_terminos"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorPrimary" />
 
-</LinearLayout>
+                <CheckBox
+                    android:id="@+id/crear_chb_terminos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:checked="false"
+                    android:paddingTop="@dimen/padding_elements"
+                    android:text="@string/crear_terminos_aceptar" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

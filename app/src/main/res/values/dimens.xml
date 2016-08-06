@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="elevation_toolbar">5dp</dimen>
+
     <dimen name="padding_elements_big">24dp</dimen>
     <dimen name="padding_elements">12dp</dimen>
     <dimen name="padding_elements_small">6dp</dimen>
