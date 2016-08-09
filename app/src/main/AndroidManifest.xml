@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jose_jesus_guzman.avanti" >
+    package="com.example.jose_jesus_guzman.avanti">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -14,7 +14,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -28,7 +28,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ClasesViews.PantallaInicialActivity" >
+        <activity android:name=".ClasesViews.PantallaInicialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,6 +38,8 @@
         <activity android:name=".ClasesViews.RegistroUsuarioActivity" />
         <activity android:name=".ClasesViews.MapsActivity" />
         <activity android:name=".ClasesViews.PrincipaActivity" />
+        <activity android:name=".ClasesViews.PerfilActivity" />
+        <activity android:name=".ClasesViews.AcercaActivity"></activity>
     </application>
 
 </manifest>

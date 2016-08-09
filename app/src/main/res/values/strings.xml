@@ -14,6 +14,7 @@
     <string name="text_reset_password">¿Olvidaste tu contraseña?</string>
     <string name="java_alert_mensaje">Se envió la contraseña al email</string>
     <string name="java_alert_positivebutton">Confirmar</string>
+
     <!--Alerts-->
     <string name="java_alert_title_reset">Restablecer Password</string>
     <string name="java_alert_title_bienvenido">Bienvenido</string>
@@ -28,7 +29,7 @@
     <string name="java_alert_no_email">Por favor ingrese su correo electronico.</string>
     <string name="java_alert_no_password">Por favor ingrese su contraseña.</string>
     <string name="java_progress_title">Iniciando sesion</string>
-    <string name="java_progress_message">Por favor espere...</string>
+    <string name="java_progress_message">Por favor espere…</string>
 
     <!--Pantalla Crear cuenta usuario -->
     <string name="crear">Crear una cuenta.</string>
@@ -52,9 +53,12 @@
     <string name="java_alert_no_aceptar">Necesita aceptar los terminos y condiciones de uso.</string>
     <string name="java_alert_message_usuarioExiste">El usuario ya existe.\nIntente con otro.</string>
 
+    <!--Pantalla principal-->
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="acerca">Acerca de</string>
+
     <!--Maps Activity-->
     <string name="map_localizacion_actual">Localización actual.</string>
-
 
     <!--Pantalla Ruta-->
     <string name="crear_ruta">Crear ruta</string>
@@ -67,9 +71,6 @@
     <string name="hint_telefono">Número de telefono móvil</string>
     <string name="hint_password_conf">Confirma contraseña</string>
     <string name="title_activity_maps">Map</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
 
