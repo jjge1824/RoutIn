@@ -17,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, android.location.LocationListener {
@@ -30,6 +31,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LatLng posicion1;
     LatLng posicion2;
     int contadorMarkers;
+
+    MarkerOptions markerOptionsOrigen, markerOptionsDestino;
+    Marker markerOrigen, markerDestino;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,28 +115,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onMapLongClick(LatLng latLng) {
 
                 if (contadorMarkers == 0){
-                    mMap.addMarker(new MarkerOptions()
-                            .anchor(0.0f, 1.0f)
+                    markerOptionsOrigen = new MarkerOptions();
+                    markerOptionsOrigen.anchor(0.0f, 1.0f)
                             .position(latLng)
                             .snippet("Origen")
+                            .title("Destino")
                             .icon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                            .draggable(true));
-                    contadorMarkers = 1;
+                            .draggable(true);
+                    markerOrigen = mMap.addMarker(markerOptionsOrigen);
+                    contadorMarkers += 1;
                     posicion1 = latLng;
-                }
-                if (contadorMarkers == 1){
-                    mMap.addMarker(new MarkerOptions()
-                            .anchor(0.0f, 1.0f)
+                } else if (contadorMarkers == 1){
+                    markerOptionsDestino = new MarkerOptions();
+                    markerOptionsDestino.anchor(0.0f, 1.0f)
                             .position(latLng)
                             .snippet("Destino")
+                            .title("Destino")
                             .icon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                            .draggable(true));
-                    contadorMarkers = 2;
+                            .draggable(true);
+                    markerDestino = mMap.addMarker(markerOptionsOrigen);
+
+                    contadorMarkers += 1;
                     posicion2 = latLng;
-                }
-                if (contadorMarkers == 2){
+                } else if (contadorMarkers == 2){
+
+                   //TODO cambiar direccion de markers
 
                     mMap.addMarker(new MarkerOptions()
                             .anchor(0.0f, 1.0f)
@@ -141,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .icon(BitmapDescriptorFactory
                                     .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                             .draggable(true));
-
+                    contadorMarkers -= 1;
                     posicion1 = posicion2;
                     posicion2 = latLng;
                 }
