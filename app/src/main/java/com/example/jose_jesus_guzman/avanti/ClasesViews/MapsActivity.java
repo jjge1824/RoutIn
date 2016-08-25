@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+//ESTE ES EL PROYECTO
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, android.location.LocationListener {
     protected LocationManager locationManager;
