@@ -4,6 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="elevation_toolbar">5dp</dimen>
+    <dimen name="padding_fragments_tab">80dp</dimen>
 
     <dimen name="padding_elements_big">24dp</dimen>
     <dimen name="padding_elements">12dp</dimen>
@@ -13,4 +14,8 @@
     <dimen name="big_text">24sp</dimen>
     <dimen name="normal_text">18sp</dimen>
     <dimen name="small_text">14sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

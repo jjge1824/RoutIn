@@ -28,7 +28,7 @@ public class AcercaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        startActivity(new Intent(AcercaActivity.this, PrincipaActivity.class));
+        startActivity(new Intent(AcercaActivity.this, PrincipalActivity.class));
         return super.onOptionsItemSelected(item);
     }
 }

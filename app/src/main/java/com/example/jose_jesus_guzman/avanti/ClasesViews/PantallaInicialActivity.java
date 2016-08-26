@@ -101,7 +101,7 @@ public class PantallaInicialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO cambiar este parametro
-                startActivity(new Intent(PantallaInicialActivity.this, MapsActivity.class));
+                startActivity(new Intent(PantallaInicialActivity.this, PrincipalActivity.class));
                 finish();
 
                 final String correo_electronico = txtEmail.getEditText().getText().toString().trim();

@@ -27,7 +27,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        startActivity(new Intent(PerfilActivity.this, PrincipaActivity.class));
+        startActivity(new Intent(PerfilActivity.this, PrincipalActivity.class));
         return super.onOptionsItemSelected(item);
     }
 }

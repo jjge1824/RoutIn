@@ -159,22 +159,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    public String crearURL (double origenLat, double origenLog, double destLat, double destLog ){
-        StringBuilder urlString = new StringBuilder();
-        urlString.append("http://maps.googleapis.com/maps/api/directions/json");
-        urlString.append("?origin=");// from
-        urlString.append(Double.toString(origenLat));
-        urlString.append(",");
-        urlString
-                .append(Double.toString(origenLog));
-        urlString.append("&destination=");// to
-        urlString
-                .append(Double.toString( destLat));
-        urlString.append(",");
-        urlString.append(Double.toString( destLog));
-        urlString.append("&sensor=false&mode=driving&alternatives=true");
-        urlString.append("&key=" + getString(R.string.google_maps_key));
-        return urlString.toString();
-    }
-
 }

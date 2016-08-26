@@ -7,6 +7,19 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.example.josejesus.acpgeolocalizacionmapas.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <!-- si el dispositivo no cuenta con OpebGL 2.0  el mapa no se puede instalar -->
+    <uses-feature
+        android:glEsVersion="0x0020000"
+        android:required="true" />
+
+    <!-- la aplicación va a poder recibir elementos tipo mapa y la firma que va a requerir -->
+    <permission
+        android:name="com.example.josejesus.acpgeolocalizacionmapas.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
@@ -37,9 +50,13 @@
         </activity>
         <activity android:name=".ClasesViews.RegistroUsuarioActivity" />
         <activity android:name=".ClasesViews.MapsActivity" />
-        <activity android:name=".ClasesViews.PrincipaActivity" />
         <activity android:name=".ClasesViews.PerfilActivity" />
-        <activity android:name=".ClasesViews.AcercaActivity"></activity>
+        <activity android:name=".ClasesViews.AcercaActivity" />
+        <activity android:name=".ClasesViews.MapasActivity" />
+        <activity
+            android:name=".ClasesViews.PrincipalActivity"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
