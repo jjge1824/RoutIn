@@ -2,17 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_perfil"
-        android:icon="@mipmap/ic_account_circle_black_24dp"
-        android:title="@string/action_aceptar"
+    <item android:id="@+id/action_proximos"
+        android:icon="@mipmap/ic_directions_car_black_24dp"
+        android:title="@string/viajes_proximos"
         app:showAsAction="always"/>
-
-    <item android:id="@+id/action_acerca"
-        android:title="@string/acerca"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/action_cerrar"
-        android:title="@string/cerrar_sesion"
-        app:showAsAction="never"/>
 
 </menu>

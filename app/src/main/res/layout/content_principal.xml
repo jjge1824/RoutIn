@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="500dp"
         android:orientation="vertical">
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,6 +28,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
         <ScrollView
@@ -39,54 +40,62 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!--ESTO ES IMPORTANTE -->
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/map_fragment"
-                    android:layout_centerHorizontal="true"
-                    android:text="Esta chido"
-                    android:textSize="50dp" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/map_fragment"
-                    android:layout_centerHorizontal="true"
-                    android:text="Esta chido"
-                    android:textSize="50dp" />
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/principal_edit_origen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/map_fragment"
-                    android:layout_centerHorizontal="true"
-                    android:text="Esta chido"
-                    android:textSize="50dp" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/ic_person_pin_black_24dp"
+                            android:hint="@string/origen" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/map_fragment"
-                    android:layout_centerHorizontal="true"
-                    android:text="Esta chido"
-                    android:textSize="50dp" />
+                    </android.support.design.widget.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/map_fragment"
-                    android:layout_centerHorizontal="true"
-                    android:text="Esta chido"
-                    android:textSize="50dp" />
+                    <ImageButton
+                        android:id="@+id/principal_imageBtn_localizacion"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="?attr/colorPrimary"
+                        android:src="@mipmap/ic_location_searching_black_24dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/map_fragment"
-                    android:layout_centerHorizontal="true"
-                    android:text="Esta chido"
-                    android:textSize="50dp" />
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/principal_edit_destino"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/ic_location_on_black_24dp"
+                            android:hint="@string/destino" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/dummy"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
