@@ -33,6 +33,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -114,7 +115,8 @@ public class PrincipalActivity extends AppCompatActivity
 
             }
         };
-
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        /*
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);//PRecicion de la ubicacion
         criteria.setAltitudeRequired(true);
@@ -124,7 +126,7 @@ public class PrincipalActivity extends AppCompatActivity
         String provider = locationManager.getBestProvider(criteria, true);
         if (provider != null) {
             locationManager.requestLocationUpdates(provider, 1000, 70, this);//Provider, rango en smilisegundos. rango en metros, locationListener
-        }
+        }*/
     }
 
     private void preguntarGooglePlay() {
@@ -202,7 +204,8 @@ public class PrincipalActivity extends AppCompatActivity
 
     @Override
     public void onLocationChanged(Location location) {
-
+        lattitud = location.getLatitude();
+        longitud = location.getLongitude();
     }
 
     @Override
@@ -221,7 +224,57 @@ public class PrincipalActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap gMap) {
+        googleMap = gMap;
+        LatLng posicionActual = new LatLng(lattitud, longitud);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(posicionActual));
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        googleMap.setMyLocationEnabled(true);
+
+        googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                lattitud = location.getLatitude();
+                longitud = location.getLongitude();
+                LatLng posicionActual = new LatLng(lattitud, longitud);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(posicionActual));
+            }
+        });
+
+        googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                LatLng posicionActual = new LatLng(lattitud, longitud);
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(posicionActual, 12.0f));
+                return true;
+            }
+        });
+
+        googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                googleMap.addMarker(new MarkerOptions()
+                        .anchor(0.0f, 1.0f)
+                        .position(latLng)
+                        .snippet("Origen")
+                        .title("Origen")
+                        .icon(BitmapDescriptorFactory
+                                .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                        .draggable(true));
+            }
+        });
 
     }
 }
